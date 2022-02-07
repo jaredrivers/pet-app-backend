@@ -8,11 +8,11 @@ const __dirname = path.resolve();
 
 dotenv.config({ path: __dirname + "/.env" });
 
-cloudinary.config({
-	cloud_name: process.env.CLOUD_NAME,
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+// cloudinary.config({
+// 	cloud_name: process.env.CLOUD_NAME,
+// 	api_key: process.env.CLOUDINARY_API_KEY,
+// 	api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
 
 const { PORT } = process.env;
 
