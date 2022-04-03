@@ -14,7 +14,7 @@ dotenv.config({ path: __dirname + "/.env" });
 // 	api_secret: process.env.CLOUDINARY_API_SECRET,
 // });
 
-const { PORT } = process.env;
+const PORT = process.env.PORT;
 
 await mongoose
 	.connect(process.env.DB_URL)
