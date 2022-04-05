@@ -22,13 +22,13 @@ export const getAllPets = async (req, res) => {
 };
 
 export const createPet = async (req, res) => {
-	const user = await User.find(req.userId);
+	const user = await User.findOne({ _id: req.userId });
 
 	if (user.role === "admin") {
 		const {
 			name,
 			type,
-			status,
+			adoptionStatus,
 			height,
 			weight,
 			color,
@@ -43,7 +43,7 @@ export const createPet = async (req, res) => {
 			const newPet = await Pet.create({
 				name,
 				type,
-				status,
+				adoptionStatus,
 				height,
 				weight,
 				color,
@@ -59,6 +59,7 @@ export const createPet = async (req, res) => {
 			res.status(409).json({ message: err.message });
 		}
 	} else {
+		console.log("user is not admin");
 		res.status(403).json({ message: "403 Forbidden" });
 	}
 };
@@ -92,6 +93,7 @@ export const editPet = async (req, res) => {
 		dietery,
 		breed,
 		tags,
+		url,
 	} = req.body;
 
 	if (isAdmin(req, req.userId)) {

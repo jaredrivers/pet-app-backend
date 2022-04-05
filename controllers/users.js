@@ -92,6 +92,7 @@ export const updateUser = async (req, res) => {
 		phoneNumber,
 		password,
 		confirmPassword,
+		url,
 	}) {
 		if (email) {
 			updates.email = email;
@@ -104,6 +105,9 @@ export const updateUser = async (req, res) => {
 		}
 		if (phoneNumber) {
 			updates.phoneNumber = phoneNumber;
+		}
+		if (url) {
+			updates.url = url;
 		}
 		if (password) {
 			if (password != confirmPassword) {

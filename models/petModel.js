@@ -16,7 +16,7 @@ const petSchema = mongoose.Schema({
 	dietary: { type: String },
 	breed: { type: String, required: true },
 	tags: { type: [String], required: true },
-	url: { type: String },
+	url: { type: String, default: "" },
 });
 
 export default mongoose.model("pets", petSchema);
