@@ -151,7 +151,6 @@ export const adoptPet = async (req, res) => {
 export const returnPet = async (req, res) => {
 	const userId = req.userId;
 	const petId = req.params.id;
-	console.log(petId);
 
 	try {
 		let pet = await Pet.findOne({ _id: petId });
@@ -163,7 +162,7 @@ export const returnPet = async (req, res) => {
 		}
 		await Pet.updateOne(
 			{ _id: petId },
-			{ $set: { adotionStatus: "Available" } }
+			{ $set: { adoptionStatus: "Available" } }
 		);
 
 		let user = await User.findOne({ _id: userId });
@@ -276,19 +275,3 @@ export const fosterPet = async (req, res) => {
 		}
 	}
 };
-
-// export const getMyPets = async (req, res) => {
-// 	const userId = req.userId;
-// 	var petList = { favorites: {}, ownedPets: {}, fostering: {} };
-
-// 	try {
-// 		let user = await User.findOne({ _id: userId });
-// 		for (let petId of user.favorites) {
-// 			let pet = await Pet.findOne({ _id: petId });
-// 			petList.favorites = { ...petList.favorites, pet };
-// 		}
-// 		res.status(200).json(petList);
-// 	} catch (err) {
-// 		res.status(500).json({ message: err.message });
-// 	}
-// };
