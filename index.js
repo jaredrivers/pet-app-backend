@@ -9,13 +9,16 @@ dotenv.config({ path: __dirname + "/.env" });
 
 const PORT = process.env.PORT;
 
-await mongoose
-	.connect(process.env.DB_URL)
-	.then(() => {
-		app.listen(PORT, () => {
-			if (process.env.NODE_ENV === "development") {
+const startServer = async () => {
+	await mongoose
+		.connect(process.env.DB_URL)
+		.then(() => {
+			app.listen(PORT, () => {
+				console.log("listening");
 				console.log(`Server running on http://localhost:${PORT}`);
-			}
-		});
-	})
-	.catch((err) => console.log(err.message));
+			});
+		})
+		.catch((err) => console.log(err.message));
+};
+
+startServer();
