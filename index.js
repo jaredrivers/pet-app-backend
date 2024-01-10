@@ -14,8 +14,9 @@ const startServer = async () => {
 		.connect(process.env.DB_URL)
 		.then(() => {
 			app.listen(PORT, () => {
-				console.log("listening");
-				console.log(`Server running on http://localhost:${PORT}`);
+				if (process.env.NODE_ENV == "development") {
+					console.log(`Server running on http://localhost:${PORT}`);
+				}
 			});
 		})
 		.catch((err) => console.log(err.message));
